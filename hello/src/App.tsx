@@ -1,11 +1,23 @@
 import './App.css';
 
-function WhichYear({year}) {
+function WhichYear({ year_film, title_film }) {
   return (
-    <h3>Rok produkcji: {year}</h3>
+    <div className="film-info">
+      <h2>{title_film}</h2>
+      <p>Rok produkcji: {year_film}</p>
+    </div>
   );
 }
 
+function WhichBook({ title_book, author_book, year_book }) {
+  return (
+    <div className="ksiazka-info">
+      <h2>{title_book}</h2>
+      <p>Autor: {author_book}</p>
+      <p>Rok wydania: {year_book}</p>
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -13,25 +25,48 @@ function App() {
       <h1>Moje filmy</h1>
 
       <div className="filmy">
+
         <div className="film">
           <img src="/angry-birds-1.jpg" alt="Angry Birds 1" />
-          <h2>Angry Birds 1</h2>
-          <WhichYear year={2016} />
+          <WhichYear title_film="Angry Birds 1" year_film={2016} />
         </div>
+
         <div className="film">
           <img src="/angry-birds-2.jpg" alt="Angry Birds 2" />
-          <h2>Angry Birds 2</h2>
-          <WhichYear year={2019} />
+          <WhichYear title_film="Angry Birds 2" year_film={2019} />
         </div>
+
         <div className="film">
           <img src="/angry-birds-3.jpg" alt="Angry Birds 3" />
-          <h2>Angry Birds 3</h2>
-          <WhichYear year={2026}/>
+          <WhichYear title_film="Angry Birds 3" year_film={2026} />
         </div>
+
       </div>
+
+      <h1>Moje książki</h1>
+
+      <div className="ksiazki">
+
+        <div className="ksiazka">
+          <img src="/lalka.jpg" alt="Lalka" />
+          <WhichBook title_book="Lalka" author_book="Bolesław Prus" year_book={1887} />
+        </div>
+
+        <div className="ksiazka">
+          <img src="/zbrodniaikara.jpg" alt="Zbrodnia i Kara" />
+          <WhichBook title_book="Zbrodnia i Kara" author_book="Fiodor Dostojewski" year_book={1867} />
+        </div>
+
+        <div className="ksiazka">
+          <img src="/dziady-cz3.jpg" alt="Dziady cz. III" />
+          <WhichBook title_book="Dziady cz. III" author_book="Adam Mickiewicz" year_book={1860} />
+        </div>
+
+      </div>
+
     </div>
+    
   );
 }
 
 export default App
-
