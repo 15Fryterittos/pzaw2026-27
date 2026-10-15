@@ -1,5 +1,12 @@
 import './App.css';
 
+function WhichYear({year}) {
+  return (
+    <h3>Rok produkcji: {year}</h3>
+  );
+}
+
+
 function App() {
   return (
     <div>
@@ -9,17 +16,17 @@ function App() {
         <div className="film">
           <img src="/angry-birds-1.jpg" alt="Angry Birds 1" />
           <h2>Angry Birds 1</h2>
-          <h3>Rok produkcji: 2016</h3>
+          <WhichYear year={2016} />
         </div>
         <div className="film">
           <img src="/angry-birds-2.jpg" alt="Angry Birds 2" />
           <h2>Angry Birds 2</h2>
-          <h3>Rok produkcji: 2019</h3>
+          <WhichYear year={2019} />
         </div>
         <div className="film">
           <img src="/angry-birds-3.jpg" alt="Angry Birds 3" />
           <h2>Angry Birds 3</h2>
-          <h3>Rok produkcji: 2026</h3>
+          <WhichYear year={2026}/>
         </div>
       </div>
     </div>
