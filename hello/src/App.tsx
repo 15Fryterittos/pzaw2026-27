@@ -1,14 +1,14 @@
 import './App.css';
 
 interface ToWhichYear {
-  year_film : number;
-  title_film : string;
+  year_film?:number;
+  title_film?:string;
 }
 
 interface ToWhichBook {
-  title_book : string;
-  author_book : string;
-  year_book : number;
+  title_book?:string;
+  author_book?:string;
+  year_book?:number;
 }
 
 function WhichYear({ year_film, title_film } : ToWhichYear) {
