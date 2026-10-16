@@ -1,6 +1,17 @@
 import './App.css';
 
-function WhichYear({ year_film, title_film }) {
+interface ToWhichYear {
+  year_film : number;
+  title_film : string;
+}
+
+interface ToWhichBook {
+  title_book : string;
+  author_book : string;
+  year_book : number;
+}
+
+function WhichYear({ year_film, title_film } : ToWhichYear) {
   return (
     <div className="film-info">
       <h2>{title_film}</h2>
@@ -9,7 +20,7 @@ function WhichYear({ year_film, title_film }) {
   );
 }
 
-function WhichBook({ title_book, author_book, year_book }) {
+function WhichBook({ title_book, author_book, year_book } : ToWhichBook) {
   return (
     <div className="ksiazka-info">
       <h2>{title_book}</h2>
