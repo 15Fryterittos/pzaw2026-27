@@ -83,12 +83,25 @@ const albums: ToWhichAlbum[] = [
 
 
 function WhichFilm({ year_film, title_film, image_film, rating }: ToWhichFilm) {
+
+  function handleFilmClick() {
+    console.log("Wybrano film: " + title_film);
+  }
+
+  function handleDetailsClick(event: React.MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    console.log("Pokaż szczegóły dla " + title_film);
+  }
+
   return (
-    <div className="card h-100">
+    <div className="card h-100" onClick={handleFilmClick}>
       <img src={image_film} className="card-img-top" alt={title_film}/>
       <div className="card-body">
         <h2 className="card-title">{title_film}</h2>
         <h3 className="card-text">Rok produkcji: {year_film}</h3>
+        <button className="btn btn-primary" onClick={handleDetailsClick}>
+          Pokaż szczegóły
+        </button>
         <h4 className="card-text">Ocena filmu: {rating}</h4>
         {rating! >= 8 && ( <p className="alert alert-success">Polecany</p> )}
       </div>
@@ -112,6 +125,11 @@ function WhichBook({ title_book, author_book, year_book, image_book } : ToWhichB
 }
 
 function Album({ title_album, year_albmum, artist_name_album, gen_album, songa_album, image_album}: ToWhichAlbum) {
+
+  function handleSongClick(albums_song: string) {
+    console.log("Wybrano utwór: " + albums_song + " z " + title_album);
+  }
+
     return (
       <div className="card h-100">
       <img src={image_album} className="card-img-top" alt={title_album} />
@@ -141,7 +159,7 @@ function Album({ title_album, year_albmum, artist_name_album, gen_album, songa_a
             {songa_album?.map((song, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{song.title}</td>
+                <td onClick={() => handleSongClick(song.title)}>{song.title}</td>
                 <td className="text-end">{song.duration}</td>
               </tr>
             ))}
@@ -161,6 +179,9 @@ function App() {
   const [filmsAfter2010Open, setFilmsAfter2010Open] = useState(true);
   const [booksFilteredOpen, setBooksFilteredOpen] = useState(true);
   const [albumWithMostSongsOpen, setAlbumWithMostSongsOpen] = useState(true);
+  const [movieSearch, setMovieSearch] = useState("");
+  const [bookSearch, setBookSearch] = useState("");
+  const [albumSearch, setAlbumSearch] = useState("");
 
   films.sort((first, second) => first.title_film!.localeCompare(second.title_film!));
 
@@ -181,6 +202,12 @@ function App() {
 
   return (
      <div className="container">
+      <input type="text" className="form-control" id="movie-search" placeholder="Wpisz tytuł" value={movieSearch} onChange={(event) => {
+        setMovieSearch(event.target.value); 
+        console.log(event.target.value);
+      }}/>
+      <p>{movieSearch}</p>
+
       <h1 onClick={() => setFilmsOpen(!filmsOpen)}>
         {filmsOpen ? "⏷" : "⏵"} Moje filmy
       </h1>
@@ -196,6 +223,12 @@ function App() {
       )}
 
       
+      <input type="text" className="form-control" id="book-search" placeholder="Wpisz tytuł" value={bookSearch} onChange={(event) => {
+        setBookSearch(event.target.value);
+        console.log(event.target.value);
+      }}/>
+      <p>{bookSearch}</p>
+
       <h1 onClick={() => setBooksOpen(!booksOpen)}>
         {booksOpen ? "⏷" : "⏵"} Moje książki
       </h1>
@@ -210,6 +243,11 @@ function App() {
         </div>
       )}
 
+      <input type="text" className="form-control" id="album-search" placeholder="Wpisz tytuł" value={albumSearch} onChange={(event) => {
+        setAlbumSearch(event.target.value);
+        console.log(event.target.value);
+      }}/>
+      <p>{albumSearch}</p>
 
       <h1 onClick={() => setAlbumsOpen(!albumsOpen)}>
         {albumsOpen ? "⏷" : "⏵"} Muzyka
