@@ -105,7 +105,7 @@ function WhichBook({ title_book, author_book, year_book, image_book } : ToWhichB
         <h2 className="card-title">{title_book}</h2>
         <p className="card-text">Autor: {author_book}</p>
         <p className="card-text">Rok wydania: {year_book}</p>
-        {year_book! < 2000 && ( <p className="badge text-bg-info">Klasyka</p> )}
+        {year_book! < 2000 && ( <p className="card-text">Klasyka</p> )}
       </div>
     </div>
   );
