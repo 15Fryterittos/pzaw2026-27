@@ -190,6 +190,7 @@ function App() {
   albums.sort((first, second) => first.title_album!.localeCompare(second.title_album!));
 
   const FilmsAfter2010 = films.filter((film) => film.year_film! > 2010);
+  const FilteredFilms = films.filter((film) => film.title_film!.toLowerCase().includes(movieSearch.toLowerCase()));
   const BooksFiltered = books.toSorted((first, second) => second.year_book! - first.year_book!);
 
   let album_with_most_songs = albums[0];
@@ -214,11 +215,15 @@ function App() {
 
       {filmsOpen && (
         <div className="row g-3">
-          {films.map((films, index) => (
+          {FilteredFilms.map((film, index) => (
             <div className="col-12 col-sm-6 col-lg-4" key={index}>
-              <WhichFilm title_film={films.title_film} year_film={films.year_film} image_film={films.image_film} rating={films.rating}/>
+              <WhichFilm title_film={film.title_film} year_film={film.year_film} image_film={film.image_film} rating={film.rating}/>
             </div>
           ))}
+
+          {FilteredFilms.length === 0 && (
+            <p>Nie znaleziono filmów</p>
+          )}
         </div>
       )}
 
