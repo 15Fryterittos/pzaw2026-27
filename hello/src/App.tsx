@@ -1,3 +1,7 @@
+//zmiany do zrobienia
+// dodanie sortowania alfabetycznego, wg stanu (zrobione taski na gorze, niezrobione na dole) orazz bez sortowania
+// localeCompare
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from "react";
